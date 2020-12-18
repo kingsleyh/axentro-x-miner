@@ -1,14 +1,14 @@
 import argon2
+// import crypto.rand
+// import math
 
 fn main() {
   pwd := 'password2'
   salt := "saltsalt"
-  hash := []byte{len: 512}
-  pwdlen := u32(pwd.len)
-  saltlen := u32(salt.len)
-  hashlen := u32(hash.len)
 
-  r := C.argon2id_hash_raw(1, 65536, 1, pwd.str, pwdlen, salt.str, saltlen, hash.data, hashlen)
+  r := argon2.argon2id_hash(1, 65536, pwd, salt, 512) or { return }
   println(r)
-  println(hash.hex())
+
+// nonce := rand.int_u64(math.max_u64) or { return }
+// println(nonce.hex())
 }
